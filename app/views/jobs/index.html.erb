@@ -1,6 +1,16 @@
 <div class="pull-right">
   <%= link_to("Add a job", new_job_path, :class => "btn btn-default" ) %>
 </div>
+<% if current_user %>
+<div class="row">
+  <div class="col-md-2">
+    <ul class="nav nav-pills nav-strcked" style="max-width: 300px; padding-top:20px;" >
+      <li class="active"><%= link_to("返回管理页面", admin_jobs_path )%> </li>
+    </ul>
+  </div>
+</div>
+<% end %>
+
 <table class="table table-boldered">
   <% @jobs.each do |job| %>
   <tr>
