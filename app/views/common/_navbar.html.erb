@@ -64,9 +64,10 @@
            <%= f.input :email, required: true, autofocus: true %>
            <%= f.input :password, required: true, hint: ("#{@minimum_password_lenth} characters minimum" if @minimum_password_length) %>
            <%= f.input :password_confirmation, required: true %>
+            <%= f.input :is_admin, as: :radio_buttons, collection:  [['个人用户', false], ['企业用户', true]], required: true %>
          </div>
          <div class="form-actions">
-           <%= f.button :submit, "Sign up" %>
+           <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
          </div>
         <% end %>
       </div>
