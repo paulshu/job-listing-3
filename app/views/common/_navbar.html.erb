@@ -7,13 +7,34 @@
       <!--第二种方法用图片 <a class="navbar-brand" href="/"><img src='<%= image_url 'logo.png' %>' >未来工作网</a> -->
     </div>
 
+    <!-- search 栏bar, 位置一定要放在这里，否则会跑出导航栏-->
+    <div class="nav navbar-nav navbar-left">
+          <%= form_tag search_jobs_path , :method => :get  do %>
+          <div class="input-group" id="search-id" >
+            <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="请输入职位信息">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+
+          </div>
+          <% end %>
+    </div>
+      <!-- 增加浏览职位的导航栏-->
+    <div>
+      <ul class="nav navbar-nav">
+  			<li class="active"><a href= /jobs > 浏览职位</a> </li>
+      </ul>
+    </div>
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
             <li>
               <% if !current_user %>
-                <li> <a href="#" data-toggle="modal" data-target="#signup-modal">注册</a> </li>
-                <li> <a href="#" data-toggle="modal" data-target="#login-modal">登录</a> </li>
+                <li> <a href="#" data-toggle="modal" data-target="#signup-modal"><span class="glyphicon glyphicon-user"></span> 注册</a> </li>
+                <li> <a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> 登录</a> </li>
               <% else %>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -36,20 +57,6 @@
     <!-- /.container-fluid -->
 </nav>
 
-<!-- search 栏bar-->
-<div class="nav navbar-nav navbar-left">
-      <%= form_tag search_jobs_path , :method => :get  do %>
-      <div class="input-group" id="search-id" >
-        <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="请输入职位信息">
-        <div class="input-group-btn">
-          <button class="btn btn-default" type="submit">
-            <i class="glyphicon glyphicon-search"></i>
-          </button>
-        </div>
-
-      </div>
-      <% end %>
-</div>
 
 
 <!-- 以下代码添加在最后 -->
