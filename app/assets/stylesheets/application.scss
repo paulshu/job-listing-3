@@ -104,7 +104,7 @@
 
 
 .navbar-default .navbar-brand {
-  color: #ef6c00; //字体颜色
+  color: #FBFBFB; //字体颜色
 padding: 10px 15px; //上下10px，左右15px
 line-height: 30px; //文字行高
 }
@@ -140,9 +140,9 @@ line-height: 30px; //文字行高
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:focus,
 .navbar-default .navbar-nav > .open > a:hover {
-  background-color: #ffe0b2;
+  background-color: transparent;
 
-  color: #263238;
+  color: #FBFBFB;
 }
 
  //.navbar-brand > img {
