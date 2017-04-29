@@ -127,6 +127,9 @@
         <%= render :partial => "job_item", :collection =>@jobs, :as => :job %>
       </tbody>
     </table>
+    <div class="text-center">
+      <%= will_paginate @jobs %>
+    </div>
   </div>
 </div>
 </div>

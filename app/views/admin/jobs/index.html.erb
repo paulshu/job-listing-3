@@ -1,5 +1,22 @@
+<div class="dropdown clearfix pull-right">
+  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
+    排 序
+      <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+    <li>
+      <%= link_to("按薪资下限排序", admin_jobs_path(:order => "by_lower_bound")) %>
+    </li>
+    <li>
+      <%= link_to("按薪资上限排序", admin_jobs_path(:order => "by_upper_bound")) %>
+    </li>
+    <li>
+      <%= link_to("按照发布时间排序", admin_jobs_path) %>
+    </li>
+  </ul>
+</div>
 <div class="pull-right">
-  <%= link_to("发布工作", new_admin_job_path, :class => "btn btn-sm btn-info" ) %>
+  <%= link_to("添加工作", new_admin_job_path, :class => "btn btn-info" ) %> &nbsp  <!-- 如设置new_admin_job_path路径则会检查用户是否为管理员  &nbsp插入一个空格-->
 </div>
 
 <table class="table table-boldered table-striped custab">
@@ -44,3 +61,6 @@
     <% end %>
   </tbody>
 </table>
+<div class="text-center">
+  <%= will_paginate @jobs %>
+</div>
