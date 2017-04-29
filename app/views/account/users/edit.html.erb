@@ -1,0 +1,15 @@
+<div class="col-md-6 col-centered">
+  <div class="panel panel-info">
+    <div class="panel-heading"><h2>修改个人资料</h2></div>
+    <div class="panel-body">
+      <%= simple_form_for [:account, @user] do |f| %>
+        <div>
+          <%= f.input :name, :label =>"用户名" %>
+          <%= f.input :email, :label =>"邮箱地址" %>
+          <%= link_to("放弃更新", account_users_path, class: "btn btn-sm btn-info" ) %>
+          <%= f.submit "提交", class: "btn btn-sm btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

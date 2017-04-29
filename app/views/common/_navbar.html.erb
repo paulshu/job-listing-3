@@ -35,14 +35,15 @@
               <% else %>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      Hi!, <%= current_user.name %>
+                      Hi!, <%= current_user.display_name %>
                       <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
                     <% if current_user.admin? %>
                       <li> <%= link_to("<span class='fa fa-home fa-lg'></span> 管理面板".html_safe, admin_jobs_path) %> </li>
                     <% end %>
-                      <li> <%= link_to("<span class='fa fa-heart fa-lg'></span> 我收藏的工作".html_safe, favorite_jobs_path) %> </li>
+                      <li> <%= link_to("<span class='fa fa-heart'></span> 我收藏的工作".html_safe, favorite_jobs_path) %> </li>
+                      <li> <%= link_to("<span class='fa fa-user fa-lg'></span> 个人中心".html_safe, edit_account_user_path(current_user)) %> </li>
                       <li role="separator" class="divider"></li> <!-- divider是bootstrap dropdowns下的分隔功能，可将多个下拉菜单分开 -->
                       <li> <%= link_to("<span class='fa fa-sign-out fa-lg'></span> 退出".html_safe, destroy_user_session_path, method: :delete) %> </li>
                   </ul>
@@ -85,7 +86,7 @@
          <%= f.error_notification %>
          <div class="form-inputs">
            <%= f.input :email, required: true, autofocus: true %>
-           <%= f.input :name, required: true %>
+           <%= f.input :name %>
            <%= f.input :password, required: true, hint: ("#{@minimum_password_lenth} characters minimum" if @minimum_password_length) %>
            <%= f.input :password_confirmation, required: true %>
             <%= f.input :is_admin, as: :radio_buttons, collection:  [['个人用户', false], ['企业用户', true]], required: true %>

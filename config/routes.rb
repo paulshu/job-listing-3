@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     resources :jobs
   end
 
+  namespace :account do
+    resources :users
+  end
+
   resources :jobs do
     member do
       post :favorites  #因与上面的favorite同名，出现routes错误，此处改名处理
