@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_many :resumes
   has_many :job_favorites
   has_many :favorite_jobs, through: :job_favorites, source: :job
+  has_many :jobs
 
    def admin?
      is_admin

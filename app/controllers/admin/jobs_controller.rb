@@ -24,7 +24,7 @@ class Admin::JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
-
+    #@job.user = current_user
     if @job.save
       redirect_to admin_jobs_path
     else
