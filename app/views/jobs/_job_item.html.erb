@@ -1,0 +1,21 @@
+<tr>
+  <td>
+    <%= link_to(job.title, job_path(job)) %>
+  </td>
+  <td>
+    <%= job.wage_lower_bound %>
+  </td>
+  <td>
+    <%= job.wage_upper_bound %>
+  </td>
+  <td>
+    <%= job.created_at %>
+  </td>
+  <td>
+    <% if current_user && current_user.is_favorite_of?(job) %>
+      <%= link_to unfavorite_job_path(job), method: :post do %><i class="fa fa-heart fa-lg" aria-hidden="true"></i><% end %>
+    <% else %>
+      <%= link_to favorites_job_path(job), method: :post do %><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i><% end %>
+    <% end %>
+  </td>
+</tr>

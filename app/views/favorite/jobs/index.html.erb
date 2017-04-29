@@ -1,0 +1,46 @@
+<div class="col-md-10 col-centered">
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3>求职列表
+      <div class="dropdown clearfix pull-right">
+        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
+          排 序
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+          <li>
+            <%= link_to("按薪资下限排序", jobs_path(:order => "by_lower_bound")) %>
+          </li>
+          <li>
+            <%= link_to("按薪资上限排序", jobs_path(:order => "by_upper_bound")) %>
+          </li>
+          <li>
+            <%= link_to("按照发布时间排序", jobs_path) %>
+          </li>
+        </ul>
+      </div>
+      <div class="pull-right">
+        <%= link_to("发布工作", new_job_path, :class => "btn btn-info" ) %> &nbsp  <!-- 如设置new_admin_job_path路径则会检查用户是否为管理员  &nbsp插入一个空格-->
+      </div>
+    </h3>
+
+  </div>
+  <div class="panel-footer">
+    <table class="table table-boldered">
+      <thead>
+        <tr>
+          <td>职缺</td>
+          <td>薪资下限</td>
+          <td>薪资上限</td>
+          <td>发布时间</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%= render :partial => "jobs/job_item", :collection =>@jobs, :as => :job %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

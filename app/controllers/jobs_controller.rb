@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :update, :edit, :destroy, :favorites, :unfavorite]
   before_action :validate_search_key, only: [:search]
   def index
     @jobs = case params[:order]
@@ -62,6 +62,27 @@ class JobsController < ApplicationController
     end
   end
 
+  def favorites
+    @job = Job.find(params[:id])
+    if !current_user.is_favorite_of?(@job)
+      current_user.favorite!(@job)
+      flash[:notice] = "收藏成功，可以到我收藏的工作中查看。"
+    else
+      flash[:warning] = "此工作已收藏！"
+    end
+      redirect_to :back
+  end
+
+  def unfavorite
+    @job = Job.find(params[:id])
+    if current_user.is_favorite_of?(@job)
+      current_user.unfavorite!(@job)
+      flash[:notice] = "已取消收藏"
+    else
+      flash[:warning] = "此工作未被收藏！"
+    end
+      redirect_to :back
+  end
 
   protected
 

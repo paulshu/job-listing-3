@@ -22,8 +22,12 @@ class Job < ApplicationRecord
 
   scope :published, -> { where(is_hidden: false) }
   scope :recent, -> { order('created_at DESC') }
+
+  belongs_to :user #做收藏功能没有一定要加上这句。
   has_many :resumes
-  
+  has_many :job_favorites
+  has_many :collectors, through: :job_favorites, source: :user
+
   def publish!
     self.is_hidden = false
     self.save

@@ -1,0 +1,2 @@
+module Favorite::JobsHelper
+end
