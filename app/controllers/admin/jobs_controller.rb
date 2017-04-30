@@ -12,16 +12,16 @@ class Admin::JobsController < ApplicationController
 
     #@jobs = current_user.jobs.paginate(:page => params[:page], :per_page => 6)
     #可以这样写也可以用where(:user => current_user)代替current_user.jobs
-    @jobs = Job.all.paginate(:page => params[:page], :per_page => 6)
+    #@jobs = Job.all.paginate(:page => params[:page], :per_page => 6)
 
-    # @jobs = case params[:order]
-    # when 'by_lower_bound'
-    #   Job.where(:user => current_user).order('wage_lower_bound DESC').paginate(:page => params[:page], :per_page => 6)
-    # when 'by_upper_bound'
-    #   Job.where(:user => current_user).order('wage_upper_bound DESC').paginate(:page => params[:page], :per_page => 6)
-    # else
-    #   Job.where(:user => current_user).recent.paginate(:page => params[:page], :per_page => 6)
-    # end  #以上采用了不同方法来确认当前用户
+    @jobs = case params[:order]
+    when 'by_lower_bound'
+      Job.where(:user => current_user).order('wage_lower_bound DESC').paginate(:page => params[:page], :per_page => 6)
+    when 'by_upper_bound'
+      Job.where(:user => current_user).order('wage_upper_bound DESC').paginate(:page => params[:page], :per_page => 6)
+    else
+      current_user.jobs.recent.paginate(:page => params[:page], :per_page => 6)
+    end  #以上采用了不同方法来确认当前用户,两咱表达方法都是没有问题的。
   end
 
   def new
@@ -39,13 +39,12 @@ class Admin::JobsController < ApplicationController
   end
 
   def edit
-    @job = Job.find(params[:id])
   end
 
   def update
-    @job = Job.find(params[:id])
     if @job.update(job_params)
-      redirect_to admin_job_path, notice:"更新成功"
+      redirect_to root_path
+      flash[:notice] = "更新成功"
     else
       render :edit
     end
