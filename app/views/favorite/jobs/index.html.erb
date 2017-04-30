@@ -10,19 +10,19 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
           <li>
-            <%= link_to("按薪资下限排序", jobs_path(:order => "by_lower_bound")) %>
+            <%= link_to("按薪资下限排序", favorite_jobs_path(:order => "by_lower_bound")) %>
           </li>
           <li>
-            <%= link_to("按薪资上限排序", jobs_path(:order => "by_upper_bound")) %>
+            <%= link_to("按薪资上限排序", favorite_jobs_path(:order => "by_upper_bound")) %>
           </li>
           <li>
-            <%= link_to("按照发布时间排序", jobs_path) %>
+            <%= link_to("按照发布时间排序", favorite_jobs_path) %>
           </li>
         </ul>
       </div>
-      <div class="pull-right">
-        <%= link_to("发布工作", new_job_path, :class => "btn btn-info" ) %> &nbsp  <!-- 如设置new_admin_job_path路径则会检查用户是否为管理员  &nbsp插入一个空格-->
-      </div>
+      <!-- <div class="pull-right">
+        <%= link_to("发布工作", new_job_path, :class => "btn btn-info" ) %> &nbsp   如设置new_admin_job_path路径则会检查用户是否为管理员  &nbsp插入一个空格
+      </div> -->
     </h3>
 
   </div>

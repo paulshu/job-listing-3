@@ -21,6 +21,7 @@ class Job < ApplicationRecord
   validates :wage_lower_bound, numericality: { greater_than: 0}
 
   scope :published, -> { where(is_hidden: false) }
+  #scope :currentU, -> { where(:user => current_user) } 调用不了
   scope :recent, -> { order('created_at DESC') }
 
   belongs_to :user #做收藏功能没有一定要加上这句。
