@@ -11,15 +11,13 @@
   <td>
     <%= job.created_at %>
   </td>
-  <td>
-    <%#= job.user.email %>
-  </td>
 
   <td>
     <% if current_user && current_user.is_favorite_of?(job) %>
-      <%= link_to unfavorite_job_path(job), method: :post do %><i class="fa fa-heart fa-lg" aria-hidden="true"></i><% end %>
+      <%= link_to("<span class='fa fa-heart fa-lg'></span>".html_safe, unfavorite_job_path(job), method: :post ) %>
     <% else %>
       <%= link_to favorites_job_path(job), method: :post do %><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i><% end %>
     <% end %>
   </td>
 </tr>
+<!-- 以上有两种写法均可以 -->
