@@ -17,7 +17,7 @@ class JobsController < ApplicationController
 
     if @job.is_hidden
       flash[:warning] = "This Job alreay archived"
-      redirect_to root_path
+      redirect_to jobs_path
     end
   end
 
@@ -27,7 +27,7 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
-    @job.user = current_user
+    
     if @job.save
       redirect_to jobs_path
     else
@@ -42,7 +42,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     if @job.update(job_params)
-      redirect_to root_path
+      redirect_to admin_jobs_path
     else
       render :edit
     end
@@ -84,7 +84,7 @@ class JobsController < ApplicationController
       redirect_to :back
   end
 
-  protected
+  private
 
   def validate_search_key
     @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
@@ -95,8 +95,6 @@ class JobsController < ApplicationController
   def search_criteria(query_string)
     { :title_cont => query_string }
   end
-
-  private
 
   def job_params
     params.require(:job).permit(:title, :description, :wage_lower_bound, :wage_upper_bound, :contact_email, :city, :is_hidden)

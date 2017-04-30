@@ -12,14 +12,6 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :favorite do
-    resources :jobs
-  end
-
-  namespace :account do
-    resources :users
-  end
-
   resources :jobs do
     member do
       post :favorites  #因与上面的favorite同名，出现routes错误，此处改名处理
@@ -30,6 +22,14 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+  end
+
+  namespace :favorite do
+    resources :jobs
+  end
+
+  namespace :account do
+    resources :users
   end
 
   root 'welcome#index'
