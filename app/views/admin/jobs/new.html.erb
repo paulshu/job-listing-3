@@ -1,15 +1,20 @@
-<h1> 发布工作 </h1>
+<div class="col-md-8 col-centered">
+  <div class="panel panel-info">
+    <div class="panel-heading"><h2>发布工作</h2></div>
+    <div class="panel-body">
+      <%= simple_form_for @job do |f| %>
 
-<%= simple_form_for @job do |f| %>
+      <%= f.input :title %>
+      <%= f.input :description%>
+      <%= f.input :wage_lower_bound, :label => "薪资下限" %>
+      <%= f.input :wage_upper_bound, :label => "薪资上限" %>
+      <%= f.input :contact_email %>
+      <%= f.input :city %>
+      <%= f.input :is_hidden %>
 
-<%= f.input :title %>
-<%= f.input :description%>
-<%= f.input :wage_lower_bound, :label => "薪资下限" %>
-<%= f.input :wage_upper_bound, :label => "薪资上限" %>
-<%= f.input :contact_email %>
-<%= f.input :city %>
-<%= f.input :is_hidden %>
+      <%= f.submit "Submit", class:"btn btn-danger"%>
 
-<%= f.submit "Submit" %>
-
-<% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

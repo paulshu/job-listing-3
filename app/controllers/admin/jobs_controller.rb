@@ -13,6 +13,8 @@ class Admin::JobsController < ApplicationController
     #@jobs = current_user.jobs.paginate(:page => params[:page], :per_page => 6)
     #可以这样写也可以用where(:user => current_user)代替current_user.jobs
     #@jobs = Job.all.paginate(:page => params[:page], :per_page => 6)
+    #则会显示所有用户的工作，即不会区别不同的企业用户来显示
+    #以上两种均不会实现分页功能！
 
     @jobs = case params[:order]
     when 'by_lower_bound'
@@ -21,7 +23,7 @@ class Admin::JobsController < ApplicationController
       Job.where(:user => current_user).order('wage_upper_bound DESC').paginate(:page => params[:page], :per_page => 6)
     else
       current_user.jobs.recent.paginate(:page => params[:page], :per_page => 6)
-    end  #以上采用了不同方法来确认当前用户,两咱表达方法都是没有问题的。
+    end  #以上采用了不同方法来确认当前用户,两个表达方法都是没有问题的。
   end
 
   def new
